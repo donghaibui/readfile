@@ -10,7 +10,6 @@ public class Test {
 
     public static void main(String arg[]) throws IOException {
 
-
         ArrayList<ScriptParameters> listScriptparameters = new ArrayList<ScriptParameters>();
         Map<String,String> map = new HashMap<String,String>();
         listScriptparameters = Util.readFile("C:\\Hai Document\\myinput.txt");
@@ -18,11 +17,5 @@ public class Test {
             map.put(script.getName(),script.getType());
 
         }
-        System.out.printf("Test");
-
-
-
-
-
     }
 }
