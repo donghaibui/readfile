@@ -4,15 +4,15 @@
 public class ScriptParameters {
     private String name;
     private String type;
-    private String value;
+
 
     public ScriptParameters() {
     }
 
-    public ScriptParameters(String name, String type, String value) {
+    public ScriptParameters(String name, String type) {
         this.name = name;
         this.type = type;
-        this.value = value;
+
     }
 
     public String getName() {
@@ -31,11 +31,5 @@ public class ScriptParameters {
         this.type = type;
     }
 
-    public String getValue() {
-        return value;
-    }
 
-    public void setValue(String value) {
-        this.value = value;
-    }
 }
