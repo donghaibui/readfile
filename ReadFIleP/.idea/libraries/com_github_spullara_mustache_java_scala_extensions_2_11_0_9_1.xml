@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="com.github.spullara.mustache.java:scala-extensions-2.11:0.9.1" type="repository">
+    <properties maven-id="com.github.spullara.mustache.java:scala-extensions-2.11:0.9.1" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/scala-extensions-2.11-0.9.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/compiler-0.9.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/scala-library-2.11.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/util-core_2.11-6.23.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/scala-parser-combinators_2.11-1.0.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

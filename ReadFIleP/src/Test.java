@@ -1,7 +1,13 @@
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import com.github.mustachejava.DefaultMustacheFactory;
+import com.github.mustachejava.Mustache;
+import com.github.mustachejava.MustacheFactory;
+import com.twitter.io.OutputStreamWriter;
+import com.twitter.io.Writer;
+
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.util.*;
+
 
 /**
  * Created by house on 4/20/2019.
@@ -10,12 +16,27 @@ public class Test {
 
     public static void main(String arg[]) throws IOException {
 
-        ArrayList<ScriptParameters> listScriptparameters = new ArrayList<ScriptParameters>();
-        Map<String,String> map = new HashMap<String,String>();
+        HashMap<String, Object> scopes = new HashMap<String, Object>();
+        scopes.put("name", "Mustache");
+        Map<String,String> listScriptparameters = new HashMap<String,String>();
         listScriptparameters = Util.readFile("C:\\Hai Document\\myinput.txt");
-        for(ScriptParameters script : listScriptparameters){
-            map.put(script.getName(),script.getType());
+        MustacheFactory mf = new DefaultMustacheFactory();
 
-        }
+        java.io.Writer writer = new StringWriter();
+        Mustache mustache = mf.compile("todo-section.mustache");
+        mustache.execute((java.io.Writer) writer,listScriptparameters);
+
+
+         writer.close();
+
+
+
+
+
+
+
+
+
     }
 }
+

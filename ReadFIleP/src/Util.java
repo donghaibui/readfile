@@ -1,8 +1,12 @@
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import com.github.mustachejava.DefaultMustacheFactory;
+import com.github.mustachejava.Mustache;
+import com.github.mustachejava.MustacheFactory;
+
+import java.io.*;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 
 /**
  * Created by house on 4/20/2019.
@@ -20,23 +24,43 @@ public class Util {
         return result;
     }
 
-    public static ArrayList<ScriptParameters> readFile(String filePath) throws IOException {
-        ArrayList<ScriptParameters> listScriptparameters = new ArrayList<ScriptParameters>();
+
+    public static void exportTxt(String filePath,String s){
+        FileOutputStream out = null;
+        try {
+            out = new FileOutputStream(filePath);
+            BufferedOutputStream bufferedOutputStream =new BufferedOutputStream(out);
+            byte b[] = s.getBytes();
+            bufferedOutputStream.write(b);
+            bufferedOutputStream.flush();
+            bufferedOutputStream.close();
+            out.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+}
+
+
+    public static Map<String,String> readFile(String filePath) throws IOException {
+
+        Map<String,String> listScriptparameters = new HashMap<String,String>();
         String nameStart ="<scriptparameter parametername = \"";
-        String nameEnd = "\" parametertype";;
+        String nameEnd = "\" parametertype = \"";;
         String typeStart = "parametertype = \"";
         String typeEnd = "\">";
 
         FileReader in = new FileReader(filePath);
         BufferedReader br = new BufferedReader(in);
         String line = br.readLine();
-
         while (line != null) {
             ScriptParameters scriptParameters = new ScriptParameters();
             scriptParameters.setName(getStringBetween(line,nameStart,nameEnd));
             scriptParameters.setType(getStringBetween(line,typeStart,typeEnd));
             if(scriptParameters.getName()!= null && scriptParameters.getType()!= null)
-                listScriptparameters.add(scriptParameters);
+                listScriptparameters.put(scriptParameters.getName(),scriptParameters.getType());
             line = br.readLine();
         }
         in.close();
