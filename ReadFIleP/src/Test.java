@@ -16,15 +16,14 @@ public class Test {
 
     public static void main(String arg[]) throws IOException {
 
-        HashMap<String, Object> scopes = new HashMap<String, Object>();
-        scopes.put("name", "Mustache");
         Map<String,String> listScriptparameters = new HashMap<String,String>();
         listScriptparameters = Util.readFile("C:\\Hai Document\\myinput.txt");
         MustacheFactory mf = new DefaultMustacheFactory();
 
         java.io.Writer writer = new StringWriter();
         Mustache mustache = mf.compile("todo-section.mustache");
-        mustache.execute((java.io.Writer) writer,listScriptparameters);
+        mustache.execute((java.io.Writer) writer,listScriptparameters.get("java"));
+        System.out.println(writer.toString());
 
 
          writer.close();
