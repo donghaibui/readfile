@@ -5,6 +5,7 @@ import com.github.mustachejava.MustacheFactory;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -44,9 +45,9 @@ public class Util {
 }
 
 
-    public static Map<String,String> readFile(String filePath) throws IOException {
+    public static List<ScriptParameters> readFile(String filePath) throws IOException {
 
-        Map<String,String> listScriptparameters = new HashMap<String,String>();
+        List<ScriptParameters> listScriptparameters = new ArrayList<ScriptParameters>();
         String nameStart ="<scriptparameter parametername = \"";
         String nameEnd = "\" parametertype = \"";;
         String typeStart = "parametertype = \"";
@@ -60,7 +61,7 @@ public class Util {
             scriptParameters.setName(getStringBetween(line,nameStart,nameEnd));
             scriptParameters.setType(getStringBetween(line,typeStart,typeEnd));
             if(scriptParameters.getName()!= null && scriptParameters.getType()!= null)
-                listScriptparameters.put(scriptParameters.getName(),scriptParameters.getType());
+                listScriptparameters.add(scriptParameters);
             line = br.readLine();
         }
         in.close();
