@@ -8,13 +8,11 @@ import java.lang.reflect.Array;
 import java.util.*;
 
 public class Example {
-
+    
 
     List<ScriptParameters> listscripts() throws IOException {
         return Util.readFile("C:\\Hai Document\\myinput.txt");
     }
-
-
 
     public static void main(String[] args) throws IOException {
 
@@ -22,6 +20,9 @@ public class Example {
         listScriptparameters = Util.readFile("C:\\Hai Document\\myinput.txt");
         MustacheFactory mf = new DefaultMustacheFactory();
         Mustache mustache = mf.compile("template.mustache");
-        mustache.execute(new PrintWriter(System.out), new Example() ).flush();
+        mustache.execute(new PrintWriter("C:\\Hai Document\\myoutput.txt"), new Example() ).flush();
+
+
+
     }
 }

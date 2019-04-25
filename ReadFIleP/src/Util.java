@@ -3,6 +3,10 @@ import com.github.mustachejava.Mustache;
 import com.github.mustachejava.MustacheFactory;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -14,6 +18,16 @@ import java.util.Map;
  */
 public class Util {
 
+
+
+    public static List<String> getAllLinesFromFile(String filePath) throws IOException {
+
+        Path path= Paths.get(filePath);
+        List<String> lines = Files.readAllLines(path, StandardCharsets.UTF_8);
+        return lines;
+
+
+    }
 
     public static String getStringBetween(String input,String start, String end){
         String result = null;
@@ -43,6 +57,30 @@ public class Util {
         }
 
 }
+
+
+    public static ArrayList<String> readFile(String filePath,String start, String end) throws IOException {
+
+        ArrayList<String> listResults = new ArrayList<String>();
+        String result = null;
+
+
+        FileReader in = new FileReader(filePath);
+        BufferedReader br = new BufferedReader(in);
+        String line = br.readLine();
+        while (line != null) {
+
+            result = getStringBetween(line,start,end);
+            if(result != null)
+                listResults.add(result);
+
+            line = br.readLine();
+        }
+
+        in.close();
+        return listResults;
+
+    }
 
 
     public static List<ScriptParameters> readFile(String filePath) throws IOException {
